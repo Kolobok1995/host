@@ -1,0 +1,33 @@
+version: '3.1'
+
+services:
+  my_docker-php:
+    image: php:8-fpm
+    volumes:
+      - ./host:/var/www/html
+
+  my_docker-nginx:
+    image: nginx:latest
+    ports:
+      - 8099:80
+    volumes:
+      - ./host:/var/www/html
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+
+  my_docker-db:
+    image: mariadb:10.6
+    restart: always
+    ports:
+      - 33099:3306
+    environment:
+      MYSQL_DATABASE: local
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+      MYSQL_ROOT_PASSWORD: admin
+
+  my_docker-composer:
+    image: composer:latest
+    volumes:
+      - ./host:/var/www/html
+    working_dir: /var/www/html
+    command: composer update
