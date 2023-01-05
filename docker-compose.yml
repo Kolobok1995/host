@@ -1,20 +1,20 @@
 version: '3.1'
 
 services:
-  my_docker-php:
+  backend-php:
     image: php:8-fpm
     volumes:
-      - ./host:/var/www/html
+      - .:/var/www/html
 
-  my_docker-nginx:
+  backend-nginx:
     image: nginx:latest
     ports:
       - 8099:80
     volumes:
-      - ./host:/var/www/html
+      - .:/var/www/html
       - ./docker/nginx/conf.d:/etc/nginx/conf.d
 
-  my_docker-db:
+  backend-db:
     image: mariadb:10.6
     restart: always
     ports:
@@ -25,9 +25,9 @@ services:
       MYSQL_PASSWORD: admin
       MYSQL_ROOT_PASSWORD: admin
 
-  my_docker-composer:
+  backend-composer:
     image: composer:latest
     volumes:
-      - ./host:/var/www/html
+      - .:/var/www/html
     working_dir: /var/www/html
     command: composer update
