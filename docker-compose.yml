@@ -29,6 +29,8 @@ services:
       MYSQL_USER: admin
       MYSQL_PASSWORD: admin
       MYSQL_ROOT_PASSWORD: admin
+    volumes:
+      - ~/ecosystem/lib_mysql/backend-db/:/var/lib/mysql
 
   backend-composer:
     image: composer:latest
