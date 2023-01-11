@@ -1,12 +1,12 @@
 version: '3.1'
 
 services:
-#  backend-php:
-#    image: php:8-fpm
-#    volumes:
-#      - .:/var/www/html
-
-  backend-php:
+  backend-php-cli:
+    build: ./docker/php-cli
+    volumes:
+      - .:/var/www/html
+      
+  backend-php-fpm:
     build: ./docker/php
     volumes:
       - .:/var/www/html

@@ -34,27 +34,20 @@ return [
     */
 
     'connections' => [
-        'mysql' => [
-            'driver' => 'mysql',
-          //  'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '33099'),
-            'database' => env('DB_DATABASE', 'local'),
-            'username' => env('DB_USERNAME', 'admin'),
-            'password' => env('DB_PASSWORD', 'admin'),
-            'charset' => 'utf8mb4',
-          //  'unix_socket' => env('DB_SOCKET', ''),
-          /*
-            'collation' => 'utf8mb4_unicode_ci',
-            'prefix' => '',
-            'prefix_indexes' => true,
-            'strict' => true,
-            'engine' => null,
-            'options' => extension_loaded('pdo_mysql') ? array_filter([
-                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
-            ]) : [],
-        */
-        ],
+            'mysql' => [
+                'driver' => 'mysql',
+                'host' => env('DB_HOST', 'backend-db'),
+                'port' => env('DB_PORT', '3306'),
+                'database' => env('DB_DATABASE', 'local'),
+                'username' => env('DB_USERNAME', 'admin'),
+                'password' => env('DB_PASSWORD', 'admin'),
+                'charset' => 'utf8',
+                'collation' => 'utf8_unicode_ci',
+                'prefix' => '',
+                'strict' => false,
+                'engine' => null,
+            ],
+        
     ],
 
     /*
