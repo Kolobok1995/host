@@ -2,6 +2,8 @@
 
 namespace App\Http\Services\Api\Base;
 
+use Illuminate\Http\JsonResponse;
+
 class BaseContextCommand extends \Exception
 {
     /**
@@ -39,7 +41,7 @@ class BaseContextCommand extends \Exception
      *
      * @return string
      */
-    public function getData(): string
+    public function getData(): array
     {
         return $this->data;
     }

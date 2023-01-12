@@ -22,18 +22,28 @@ class ApiController extends BaseController
         try {
             $this->initContextCommand($request);
             $this->initExchanger();
-
-
+            $this->processExchanger();
+            
         } catch (ExchangerCommandException $error) {
+
+            return $this->getJsonResponse([
+                'error' => $error->getTypeError(),
+                'message' => $error->getMessage()
+            ]);
+        } catch (ExchangerStrategyException $error) {
+
             return $this->getJsonResponse([
                 'error' => $error->getTypeError(),
                 'message' => $error->getMessage()
             ]);
         }
 
-        $users = \DB::table('users')->get()->toArray();
+       // $users = \DB::table('users')->get()->toArray();
 
-        return $this->getJsonResponse($users, true);
+        return $this->getJsonResponse(
+            $this->getExchangerJsonData(),
+            true
+        );
     }
 
     /**
@@ -74,5 +84,27 @@ class ApiController extends BaseController
     protected function initExchanger(): void
     {
         $this->exchanger = new ExchangerService($this->contextCommand);
+    }
+    
+    /**
+     * Запуск действий обменника.
+     * 
+     * @return void
+     * @throws ExchangerCommandException
+     */
+    protected function processExchanger(): void
+    {
+        $this->exchanger->process();
+    }
+    
+    /**
+     * Получение результата обменника.
+     * 
+     * @return void
+     * @throws ExchangerCommandException
+     */
+    protected function getExchangerJsonData(): array
+    {
+        return $this->exchanger->getData();
     }
 }

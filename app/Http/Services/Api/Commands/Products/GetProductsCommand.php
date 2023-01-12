@@ -1,12 +1,15 @@
 <?php
 
-namespace App\Http\Services\Api\Products;
+namespace App\Http\Services\Api\Commands\Products;
+
+use App\Http\Services\Api\Base\BaseCommand;
+use Illuminate\Http\JsonResponse;
 
 /**
  * Интерфейс Команды объявляет 
  * метод для выполнения команд.
  */
-class GetProductsCommand extends Command
+class GetProductsCommand extends BaseCommand
 {
     /**
      * Метод обмена.
@@ -14,14 +17,8 @@ class GetProductsCommand extends Command
      */
     const COMMAND_NAME = 'get_products';
 
-    public function __construct(string $message, string $typeError = null)
+    public function execute(): array
     {
-        $this->typeError = $typeError;
-        parent::__construct($message);
-    }
-
-    function execute(): void
-    {
-        
+        return \DB::table('users')->get()->toArray();
     }
 }

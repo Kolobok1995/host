@@ -2,7 +2,7 @@
 //TODO Запихнуть в абстрактный класс
 namespace App\Http\Services\Api\Base;
 
-class ExchangerCommandException extends \Exception
+class ExchangerStrategyException extends \Exception
 {
     /**
      * @var array

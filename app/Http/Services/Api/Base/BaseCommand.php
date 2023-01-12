@@ -6,13 +6,29 @@ namespace App\Http\Services\Api\Base;
  * Интерфейс Команды объявляет 
  * метод для выполнения команд.
  */
-abstract class Command
+abstract class BaseCommand
 {
-    public function __construct(string $message, string $typeError = null)
+    private array $commandData;
+    private array $data;
+
+    public function __construct(array $commandData = [])
     {
-        $this->typeError = $typeError;
-        parent::__construct($message);
+        $this->commandData = $commandData;
     }
 
-    abstract public function execute(): void;
+    abstract public function execute(): array;
+
+    public function process() {
+        $this->data = $this->execute();
+    }
+    
+    public function getCommandData(): array
+    {
+        return $this->commandData;
+    }
+    
+    public function getResult(): array
+    {
+        return $this->data;
+    }
 }
