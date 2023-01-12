@@ -1,18 +1,27 @@
 <?php
 
-namespace App\Http\Services\Api\Base;
+namespace App\Http\Services\Api\Products;
 
 /**
  * Интерфейс Команды объявляет 
  * метод для выполнения команд.
  */
-abstract class Command
+class GetProductsCommand extends Command
 {
+    /**
+     * Метод обмена.
+     * @var string
+     */
+    const COMMAND_NAME = 'get_products';
+
     public function __construct(string $message, string $typeError = null)
     {
         $this->typeError = $typeError;
         parent::__construct($message);
     }
 
-    abstract public function execute(): void;
+    function execute(): void
+    {
+        
+    }
 }
