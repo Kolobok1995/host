@@ -18,15 +18,30 @@ abstract class BaseCommand
 
     abstract public function execute(): array;
 
+    /**
+     * Запуск команды
+     *
+     * @return void
+     */
     public function process() {
         $this->data = $this->execute();
     }
     
-    public function getCommandData(): array
+    /**
+     * Возвращает данные запроса
+     *
+     * @return array
+     */
+    public function getCommandData(string $key, $default = 'Неизвестно'): string
     {
-        return $this->commandData;
+        return array_key_exists($key, $this->commandData) ? $this->commandData[$key] : $this->commandData;
     }
     
+    /**
+     * Возвращает данные выполненной команды
+     *
+     * @return array
+     */
     public function getResult(): array
     {
         return $this->data;

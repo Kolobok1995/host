@@ -3,6 +3,7 @@
 namespace App\Http\Services\Api\Base;
 
 use Illuminate\Http\JsonResponse;
+use App\Http\Services\Api\Exceptions\ExchangerCommandException;
 
 class BaseContextCommand extends \Exception
 {

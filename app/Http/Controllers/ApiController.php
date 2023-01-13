@@ -7,7 +7,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
-use App\Http\Services\Api\Base\ExchangerCommandException;
+use App\Http\Services\Api\Base\BaseExchangerException;
 use App\Http\Services\Api\Base\BaseContextCommand;
 use App\Http\Services\Api\ExchangerService;
 use Illuminate\Routing\Controller as BaseController;
@@ -24,21 +24,13 @@ class ApiController extends BaseController
             $this->initExchanger();
             $this->processExchanger();
             
-        } catch (ExchangerCommandException $error) {
-
-            return $this->getJsonResponse([
-                'error' => $error->getTypeError(),
-                'message' => $error->getMessage()
-            ]);
-        } catch (ExchangerStrategyException $error) {
+        } catch (BaseExchangerException $error) {
 
             return $this->getJsonResponse([
                 'error' => $error->getTypeError(),
                 'message' => $error->getMessage()
             ]);
         }
-
-       // $users = \DB::table('users')->get()->toArray();
 
         return $this->getJsonResponse(
             $this->getExchangerJsonData(),
@@ -101,7 +93,7 @@ class ApiController extends BaseController
      * Получение результата обменника.
      * 
      * @return void
-     * @throws ExchangerCommandException
+     * @throws ExchangerStrategyException
      */
     protected function getExchangerJsonData(): array
     {

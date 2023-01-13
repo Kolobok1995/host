@@ -3,10 +3,12 @@
 namespace App\Http\Services\Api;
 
 use App\Http\Services\Api\Base\BaseContextCommand;
+use App\Http\Services\Api\Exceptions\ExchangerStrategyException;
 use Illuminate\Http\JsonResponse;
 
 use App\Http\Services\Api\Commands\{
-    Products\GetProductsCommand
+    Products\GetProductsCommand,
+    Products\GetCategoriesCommand
 };
 
 class ExchangerService // extends BaseExchangerService
@@ -27,18 +29,18 @@ class ExchangerService // extends BaseExchangerService
     {
         return [
             GetProductsCommand::COMMAND_NAME              => GetProductsCommand::class,
+            GetCategoriesCommand::COMMAND_NAME            => GetCategoriesCommand::class,
         ];
     }
     
 
     public function process(): void
     {
-        // TODO Привести в порядок
         $commandName = $this->contextCommand->getMode();
         $commandData = $this->contextCommand->getData();
         $strategies = $this->getStrategies();
 
-        if (! isset($strategies[$commandName])) {
+        if (! array_key_exists($commandName, $strategies)) {
             $this->throwError('Метод загрузки данных ' . $commandName . ' не существует');
         }
 
@@ -58,10 +60,10 @@ class ExchangerService // extends BaseExchangerService
      * 
      * @param  string $message
      * @param  mixed $case
-     * @throws ExchangerCommandException
+     * @throws ExchangerStrategyException
      */
     protected function throwError(string $message)
     {
-        throw new ExchangerStrategyException($message, 'Ошибка входных данных');
+        throw new ExchangerStrategyException($message);
     }
 }

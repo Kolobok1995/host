@@ -9,17 +9,17 @@ use Illuminate\Http\JsonResponse;
  * Интерфейс Команды объявляет 
  * метод для выполнения команд.
  */
-class GetProductsCommand extends BaseCommand
+class GetCategoriesCommand extends BaseCommand
 {
     /**
      * Метод обмена.
      * @var string
      */
-    const COMMAND_NAME = 'get_products_data';
+    const COMMAND_NAME = 'get_categories_data';
 
     public function execute(): array
     {
      //   dd($this->getCommandData('limit'));
-        return \DB::table('users')->get()->toArray();
+        return \DB::table('categories')->get()->toArray();
     }
 }

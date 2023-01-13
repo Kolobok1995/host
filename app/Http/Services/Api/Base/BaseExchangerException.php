@@ -1,8 +1,7 @@
 <?php
-//TODO Запихнуть в абстрактный класс
 namespace App\Http\Services\Api\Base;
 
-class ExchangerStrategyException extends \Exception
+abstract class BaseExchangerException extends \Exception
 {
     /**
      * @var array
@@ -11,7 +10,7 @@ class ExchangerStrategyException extends \Exception
 
     public function __construct(string $message, string $typeError = '')
     {
-        $this->typeError = $typeError;
+        $this->typeError = $typeError ?: $this->typeError;
         parent::__construct($message);
     }
 

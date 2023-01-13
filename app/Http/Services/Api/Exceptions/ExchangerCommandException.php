@@ -1,13 +1,15 @@
 <?php
-//TODO Запихнуть в абстрактный класс
-namespace App\Http\Services\Api\Base;
 
-class ExchangerCommandException extends \Exception
+namespace App\Http\Services\Api\Exceptions;
+
+use App\Http\Services\Api\Base\BaseExchangerException;
+
+class ExchangerCommandException extends BaseExchangerException
 {
     /**
      * @var array
      */
-    private string $typeError = '';
+    private string $typeError = 'input_data_error';
 
     public function __construct(string $message, string $typeError = '')
     {
