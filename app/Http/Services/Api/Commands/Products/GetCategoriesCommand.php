@@ -17,9 +17,12 @@ class GetCategoriesCommand extends BaseCommand
      */
     const COMMAND_NAME = 'get_categories_data';
 
-    public function execute(): array
+    public function execute(): mixed
     {
-     //   dd($this->getCommandData('limit'));
+        if ($this->hasCommandData('slug')) {
+            return (array) \DB::table('categories')->where('slug', $this->getCommandData('slug'))->first();
+        }
+
         return \DB::table('categories')->get()->toArray();
     }
 }

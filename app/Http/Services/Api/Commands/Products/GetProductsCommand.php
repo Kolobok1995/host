@@ -17,9 +17,8 @@ class GetProductsCommand extends BaseCommand
      */
     const COMMAND_NAME = 'get_products_data';
 
-    public function execute(): array
+    public function execute(): mixed
     {
-     //   dd($this->getCommandData('limit'));
         return \DB::table('users')->get()->toArray();
     }
 }
