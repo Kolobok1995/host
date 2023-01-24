@@ -25,7 +25,6 @@ class ApiController extends BaseController
             $this->processExchanger();
             
         } catch (BaseExchangerException $error) {
-
             return $this->getJsonResponse([
                 'error' => $error->getTypeError(),
                 'message' => $error->getMessage()
