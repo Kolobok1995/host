@@ -30,7 +30,7 @@ class BaseApiController extends BaseController
     {
         try {
             $this->initContextCommand($mode, $params);
-            $this->initExchangerCommand();
+            $this->initExchangerService();
         } catch (InitCommandException $error) {
             $this->exchangerError = [
                 'error' => $error->getTypeError(),
@@ -65,7 +65,7 @@ class BaseApiController extends BaseController
      *
      * @return JsonResponse
      */
-    public function getJsonResponse(): JsonResponse
+    public function getResponseExchanger(): JsonResponse
     {
         if ($this->exchangerError) {
             return response()->json([
@@ -97,7 +97,7 @@ class BaseApiController extends BaseController
      * @return void
      * @throws ExchangerCommandException
      */
-    private function initExchangerCommand(): void
+    private function initExchangerService(): void
     {
         $this->exchanger = new ExchangerService($this->contextCommand);
     }

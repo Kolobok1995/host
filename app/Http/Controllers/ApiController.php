@@ -13,6 +13,6 @@ class ApiController extends BaseApiController
         $this->initExchanger($request->mode, $request->data);
         $this->executeExchanger();
 
-        return $this->getJsonResponse();
+        return $this->getResponseExchanger();
     }
 }
