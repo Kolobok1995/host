@@ -1,19 +1,16 @@
 <?php
+namespace App\Http\Services\Api\Exceptions\Base;
 
-namespace App\Http\Services\Api\Exceptions;
-
-use App\Http\Services\Api\Base\BaseExchangerException;
-
-class ExchangerCommandException extends BaseExchangerException
+abstract class BaseExchangerException extends \Exception
 {
     /**
      * @var array
      */
-    private string $typeError = 'input_data_error';
+    private string $typeError = '';
 
     public function __construct(string $message, string $typeError = '')
     {
-        $this->typeError = $typeError;
+        $this->typeError = $typeError ?: $this->typeError;
         parent::__construct($message);
     }
 

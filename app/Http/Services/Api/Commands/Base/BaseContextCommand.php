@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Services\Api\Base;
+namespace App\Http\Services\Api\Commands\Base;
 
 use Illuminate\Http\JsonResponse;
-use App\Http\Services\Api\Exceptions\ExchangerCommandException;
+use App\Http\Services\Api\Exceptions\InitCommandException;
 
 class BaseContextCommand extends \Exception
 {
@@ -77,10 +77,10 @@ class BaseContextCommand extends \Exception
      * 
      * @param  string $message
      * @param  mixed $case
-     * @throws ExchangerCommandException
+     * @throws InitCommandException
      */
     protected function throwError(string $message)
     {
-        throw new ExchangerCommandException($message, 'Ошибка входных данных');
+        throw new InitCommandException($message, 'Ошибка входных данных');
     }
 }

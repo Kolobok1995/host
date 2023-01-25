@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Services\Api\Base;
+namespace App\Http\Services\Api\Commands\Base;
 
 /**
  * Интерфейс Команды объявляет 

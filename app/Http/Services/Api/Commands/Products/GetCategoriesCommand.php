@@ -2,7 +2,7 @@
 
 namespace App\Http\Services\Api\Commands\Products;
 
-use App\Http\Services\Api\Base\BaseCommand;
+use App\Http\Services\Api\Commands\Base\BaseCommand;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Database\Query\Builder;
 use DB;

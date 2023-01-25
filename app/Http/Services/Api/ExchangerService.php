@@ -2,7 +2,7 @@
 
 namespace App\Http\Services\Api;
 
-use App\Http\Services\Api\Base\BaseContextCommand;
+use App\Http\Services\Api\Commands\Base\BaseContextCommand;
 use App\Http\Services\Api\Exceptions\ExchangerStrategyException;
 use Illuminate\Http\JsonResponse;
 
@@ -11,7 +11,7 @@ use App\Http\Services\Api\Commands\{
     Products\GetCategoriesCommand
 };
 
-class ExchangerService // extends BaseExchangerService
+class ExchangerService
 {
     private BaseContextCommand $contextCommand;
     private string $strategyClass;
@@ -34,8 +34,12 @@ class ExchangerService // extends BaseExchangerService
     }
     
 
-    public function process(): void
+    public function execute(): void
     {
+        // TODO Надо так
+        // $command = new ChangeCommand($this->contextCommand);
+        // $command->execute();
+
         $commandName = $this->contextCommand->getMode();
         $commandData = $this->contextCommand->getData();
         $strategies = $this->getStrategies();
@@ -50,6 +54,11 @@ class ExchangerService // extends BaseExchangerService
         $this->strategy->process();
     }
     
+    /**
+     * Возвращает результат
+     *
+     * @return array
+     */
     public function getData(): array
     {
         return $this->strategy->getResult();
