@@ -20,12 +20,18 @@ class GetCategoriesCommand extends BaseCommand
     const COMMAND_NAME = 'get_categories_data';
 
     private Builder $products;
+    private string|null $slug = null;
 
-    public function execute(): mixed
+    /**
+     * @see BaseCommand
+    */
+    public function process(): mixed
     {
-        if ($this->hasCommandData('slug')) {
+        $this->slug = $this->context->getDataValue('category_slug');
+
+        if ($this->slug) {
             return (array) DB::table('categories')
-                ->where('slug', $this->getCommandData('slug'))
+                ->where('slug', $this->slug)
                 ->first();
         }
 

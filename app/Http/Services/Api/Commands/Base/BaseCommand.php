@@ -2,58 +2,47 @@
 
 namespace App\Http\Services\Api\Commands\Base;
 
+use App\Http\Services\Api\Commands\Base\BaseContextCommand;
+
 /**
  * Интерфейс Команды объявляет 
  * метод для выполнения команд.
  */
 abstract class BaseCommand
 {
-    private array $commandData;
-    private array $data;
+    public BaseContextCommand $context;
+    
+    private array $data = [];
 
-    public function __construct(array $commandData = [])
+    public function __construct(BaseContextCommand $context)
     {
-        $this->commandData = $commandData;
+        $this->context = $context;
     }
 
-    abstract public function execute(): mixed;
+    /**
+     * Процесс команды
+     *
+     * @return mixed
+     */
+    abstract public function process(): mixed;
 
     /**
-     * Запуск команды
+     * Запуск процесса команды
      *
      * @return void
      */
-    public function process() 
+    public function execute(): void
     {
-        $this->data = is_array($this->execute()) ? $this->execute() : [$this->execute()];
+        $unsafeData = $this->process(); 
+        $this->data = is_array($unsafeData) ? $unsafeData : [$unsafeData];
     }
-    
-    /**
-     * Возвращает данные запроса
-     *
-     * @return array
-     */
-    public function getCommandData(string $key, $default = 'Неизвестно'): string|array
-    {
-        return $this->hasCommandData($key) ? $this->commandData[$key] : $default;
-    }
-    
-    /**
-     * Проверяет наличие параметра в запросе
-     *
-     * @return array
-     */
-    public function hasCommandData(string $key, $default = 'Неизвестно'): bool
-    {
-        return array_key_exists($key, $this->commandData);
-    }
-    
+
     /**
      * Возвращает данные выполненной команды
      *
      * @return array
      */
-    public function getResult(): array
+    public function getData(): array
     {
         return $this->data;
     }

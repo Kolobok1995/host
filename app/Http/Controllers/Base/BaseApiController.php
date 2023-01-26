@@ -8,8 +8,7 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\JsonResponse;
 
 use App\Http\Services\Api\Exceptions\{
-    InitCommandException,
-    ExecCommandException
+    InputCommandException
 };
 
 class BaseApiController extends BaseController
@@ -31,12 +30,12 @@ class BaseApiController extends BaseController
         try {
             $this->initContextCommand($mode, $params);
             $this->initExchangerService();
-        } catch (InitCommandException $error) {
+        } catch (InputCommandException $error) {
             $this->exchangerError = [
                 'error' => $error->getTypeError(),
                 'message' => $error->getMessage()
             ];
-        }
+        } // ToDo: Сделать вывод всех ошибок
     }
 
     /**
@@ -50,9 +49,10 @@ class BaseApiController extends BaseController
             return;
         }
 
+        // ToDo: Сделать вывод всех ошибок
         try {
             $this->exchanger->execute();
-        } catch (ExecCommandException $error) {
+        } catch (InputCommandException $error) {
             $this->exchangerError = [
                 'error' => $error->getTypeError(),
                 'message' => $error->getMessage()

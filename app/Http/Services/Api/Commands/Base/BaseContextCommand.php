@@ -4,9 +4,12 @@ namespace App\Http\Services\Api\Commands\Base;
 
 use Illuminate\Http\JsonResponse;
 use App\Http\Services\Api\Exceptions\InitCommandException;
+use App\Http\Services\Api\Traits\ThrowerError;
 
 class BaseContextCommand extends \Exception
 {
+    use ThrowerError;
+
     /**
      * Метод обработки.
      * @var string
@@ -48,39 +51,53 @@ class BaseContextCommand extends \Exception
     }
 
     /**
-     * Проверяем переданные значения
+     * Проверяет наличие параметра в запросе
+     *
+     * @return array
+     */
+    public function hasData(string $key, $default = 'Неизвестно'): bool
+    {
+        return array_key_exists($key, $this->data);
+    }
+    
+    /**
+     * Возвращает значение переданного параметра
+     *
+     * @return array
+     */
+    public function getDataValue(string $key, $default = null): array|string|null
+    {
+        if (! $this->hasData($key)) {
+            return $default;
+        }
+        
+        return $this->data[$key];
+    }
+
+    /**
+     * Проверяем переданные данные
      *
      * @param mixed $mode
      * @param mixed $data
      * @return void
+     * @throws InputCommandException
      */
-    protected function validate($mode, $data) {
+    protected function validate($mode, $data): void 
+    {
         if (empty($mode)) {
-            $this->throwError('Не указан метод обработки');
+            $this->throwInputError('Не указан метод обработки');
         }
         
         if (empty($data)) {
-            $this->throwError('Отсутствуют данные для обработки');
+            $this->throwInputError('Отсутствуют данные для обработки');
         }
         
         if (! is_string($mode)) {
-            $this->throwError('Метод должен соответствовать типу string');
+            $this->throwInputError('Метод должен соответствовать типу string');
         }
         
         if (! is_array($data)) {
-            $this->throwError('Данные должны соответствовать типу array');
+            $this->throwInputError('Данные должны соответствовать типу array');
         }
-    }
-
-    /**
-     * Бросает ошибку контекста команды.
-     * 
-     * @param  string $message
-     * @param  mixed $case
-     * @throws InitCommandException
-     */
-    protected function throwError(string $message)
-    {
-        throw new InitCommandException($message, 'Ошибка входных данных');
     }
 }

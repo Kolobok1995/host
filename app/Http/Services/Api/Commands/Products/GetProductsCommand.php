@@ -20,17 +20,17 @@ class GetProductsCommand extends BaseCommand
     const COMMAND_NAME = 'get_products_data';
 
     private Builder $products;
+    private string|null $slug = null;
 
     /**
-     * Возвращает array
-     *
-     * @return mixed
-     */
-    public function execute(): mixed
+     * @see BaseCommand
+    */
+    public function process(): mixed
     {
         $this->buildProduct();
+        $this->slug = $this->context->getDataValue('category_slug');
 
-        if ($this->hasCommandData('category_slug')) {
+        if ((bool) $this->slug) {
             $this->productBySlug();
         }
 
@@ -38,17 +38,19 @@ class GetProductsCommand extends BaseCommand
     }
 
     /**
-     * @return array
+     * @return void
      */
     private function productBySlug(): void
     {
         $this->products = $this->products
             ->leftJoin('categories as c', 'p.category_id', 'c.id')
-            ->where('c.slug', $this->getCommandData('category_slug'));
+            ->where('c.slug', $this->slug);
     }
     
     /**
-     * @return array
+     * Инициализируем список товаров
+     * 
+     * @return void
      */
     private function buildProduct(): void
     {
@@ -63,6 +65,8 @@ class GetProductsCommand extends BaseCommand
     }
 
     /**
+     * Получаем список товаров
+     * 
      * @return array
      */
     private function getProductList(): array

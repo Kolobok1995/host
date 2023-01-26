@@ -8,9 +8,8 @@ abstract class BaseExchangerException extends \Exception
      */
     private string $typeError = '';
 
-    public function __construct(string $message, string $typeError = '')
+    public function __construct(string $message)
     {
-        $this->typeError = $typeError ?: $this->typeError;
         parent::__construct($message);
     }
 
