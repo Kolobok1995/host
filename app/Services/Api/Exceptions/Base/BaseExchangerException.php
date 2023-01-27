@@ -1,5 +1,5 @@
 <?php
-namespace App\Http\Services\Api\Exceptions\Base;
+namespace App\Services\Api\Exceptions\Base;
 
 abstract class BaseExchangerException extends \Exception
 {

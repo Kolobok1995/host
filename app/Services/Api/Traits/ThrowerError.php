@@ -1,8 +1,8 @@
 <?php 
 
-namespace App\Http\Services\Api\Traits;
+namespace App\Services\Api\Traits;
 
-use App\Http\Services\Api\Exceptions\{
+use App\Services\Api\Exceptions\{
     InputCommandException
 };
 

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Services\Api;
+namespace App\Services\Api;
 
-use App\Http\Services\Api\Commands\Base\BaseContextCommand;
-use App\Http\Services\Api\Exceptions\ExchangerStrategyException;
+use App\Services\Api\Commands\Base\BaseContextCommand;
+use App\Services\Api\Exceptions\ExchangerStrategyException;
 use Illuminate\Http\JsonResponse;
-use App\Http\Services\Api\Strategies\ChangeCommandStrategy;
-use App\Http\Services\Api\Commands\Base\BaseCommand;
+use App\Services\Api\Strategies\ChangeCommandStrategy;
+use App\Services\Api\Commands\Base\BaseCommand;
 
 class ExchangerService
 {

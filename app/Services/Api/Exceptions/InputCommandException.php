@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Services\Api\Exceptions;
+namespace App\Services\Api\Exceptions;
 
-use App\Http\Services\Api\Exceptions\Base\BaseExchangerException;
+use App\Services\Api\Exceptions\Base\BaseExchangerException;
 
 class InputCommandException extends BaseExchangerException
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Services\Api\Commands\Base;
+namespace App\Services\Api\Commands\Base;
 
-use App\Http\Services\Api\Commands\Base\BaseContextCommand;
+use App\Services\Api\Commands\Base\BaseContextCommand;
 
 /**
  * Интерфейс Команды объявляет 

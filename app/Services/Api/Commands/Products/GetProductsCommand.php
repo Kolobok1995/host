@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Services\Api\Commands\Products;
+namespace App\Services\Api\Commands\Products;
 
-use App\Http\Services\Api\Commands\Base\BaseCommand;
+use App\Services\Api\Commands\Base\BaseCommand;
 use Illuminate\Http\JsonResponse;
 use DB;
 use Illuminate\Database\Query\Builder;

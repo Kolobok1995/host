@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Base;
 
-use App\Http\Services\Api\ExchangerService;
-use App\Http\Services\Api\Commands\Base\BaseContextCommand;
+use App\Services\Api\ExchangerService;
+use App\Services\Api\Commands\Base\BaseContextCommand;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\JsonResponse;
 
-use App\Http\Services\Api\Exceptions\{
+use App\Services\Api\Exceptions\{
     InputCommandException
 };
 

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Services\Api\Commands\Base;
+namespace App\Services\Api\Commands\Base;
 
 use Illuminate\Http\JsonResponse;
-use App\Http\Services\Api\Exceptions\InitCommandException;
-use App\Http\Services\Api\Traits\ThrowerError;
+use App\Services\Api\Exceptions\InitCommandException;
+use App\Services\Api\Traits\ThrowerError;
 
 class BaseContextCommand extends \Exception
 {
