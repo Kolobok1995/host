@@ -9,7 +9,7 @@ use App\Http\Controllers\Base\BaseApiController;
 class ApiController extends BaseApiController
 {
     /**
-     * Возвращает ответ
+     * Возвращает ответ JsonResponse
      *
      * @param Request $request
      * @return JsonResponse
