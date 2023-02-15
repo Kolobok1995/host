@@ -11,6 +11,9 @@ RUN install-php-extensions \
     tidy redis xmlrpc \
     zip imagick gd exif
 
+RUN pecl install xdebug \ 
+    && docker-php-ext-enable xdebug
+
 COPY ./conf.d /usr/local/etc/php/conf.d
 
 WORKDIR /var/www/html
