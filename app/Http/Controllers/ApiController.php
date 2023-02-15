@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Base\BaseApiController;
 
-
 class ApiController extends BaseApiController
 {
     /**
