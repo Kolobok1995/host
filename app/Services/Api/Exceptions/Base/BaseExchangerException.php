@@ -20,6 +20,6 @@ abstract class BaseExchangerException extends \Exception
      */
     public function getTypeError(): string
     {
-        return $this->typeError;
+        return (string) $this->typeError;
     }
 }

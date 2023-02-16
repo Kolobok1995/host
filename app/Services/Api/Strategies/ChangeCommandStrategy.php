@@ -15,11 +15,11 @@ class ChangeCommandStrategy
     
     private BaseContextCommand $contextCommand;
 
-    public function __construct(BaseContextCommand $contextCommand) 
+    public function __construct(BaseContextCommand $contextCommand)
     {
         $this->contextCommand = $contextCommand;
     }
-
+    
     /**
      * Возвращает команду 
      *
@@ -32,7 +32,7 @@ class ChangeCommandStrategy
             GetProductsCommand::COMMAND_NAME       => GetProductsCommand::class,
             GetCategoriesCommand::COMMAND_NAME     => GetCategoriesCommand::class,
             
-            default   => $this->throwInputError($messageError)
+            default   => $this->throwInputError('Ошибка')
         };
 
         return new $command($this->contextCommand);
