@@ -40,4 +40,6 @@ abstract class BaseCommand
     {
         return array_key_exists($key, $this->data);
     }
+
+    abstract public function process(): mixed;
 }

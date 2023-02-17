@@ -212,6 +212,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
+        'DB' => Illuminate\Support\Facades\DB::class,
         'ApiExchanges' => App\Facade\ApiExchanges::class
 
     ])->toArray(),

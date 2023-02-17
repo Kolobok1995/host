@@ -10,13 +10,12 @@ use Illuminate\Http\Request;
 
 class ApiShopController extends BaseController
 {
-
     /**
-     * Список всех
+     * Запрос по умолчанию
      *
      * @return ApiResource
      */
-    public function index(Request $request, ExchangerShop $service): ApiResource
+    public function index(): ApiResource
     {
         return new ApiResource(
             ApiExchanges::getData()

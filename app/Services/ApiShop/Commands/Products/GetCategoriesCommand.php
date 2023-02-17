@@ -4,7 +4,7 @@ namespace App\Services\ApiShop\Commands\Products;
 
 use App\Services\ApiShop\Commands\Base\BaseCommand;
 use Illuminate\Database\Query\Builder;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Интерфейс Команды объявляет 

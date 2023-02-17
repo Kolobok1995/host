@@ -20,7 +20,6 @@ class ApiShopServiceProvider extends ServiceProvider
         $commandsService = $this->app->make(CommandsService::class);
         $command = $commandsService->getCommand();
         
-        
         $this->app->bind(ExchangerShop::class, function () use ($command) {
             return new ExchangerService($command);
         });
