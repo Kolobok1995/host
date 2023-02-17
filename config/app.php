@@ -194,6 +194,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\CommandsServiceProvider::class,
+        App\Providers\ApiShopServiceProvider::class,
 
     ],
 
@@ -210,6 +212,8 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
+        'ApiExchanges' => App\Facade\ApiExchanges::class
+
     ])->toArray(),
 
 ];

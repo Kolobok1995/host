@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Services\Api\Commands\Products;
+namespace App\Services\ApiShop\Commands\Products;
 
-use App\Services\Api\Commands\Base\BaseCommand;
-use Illuminate\Http\JsonResponse;
+use App\Services\ApiShop\Commands\Base\BaseCommand;
 use Illuminate\Database\Query\Builder;
 use DB;
 
@@ -19,7 +18,6 @@ class GetCategoriesCommand extends BaseCommand
      */
     const COMMAND_NAME = 'get_categories_data';
 
-    private Builder $products;
     private string|null $slug = null;
 
     /**
@@ -27,7 +25,7 @@ class GetCategoriesCommand extends BaseCommand
     */
     public function process(): mixed
     {
-        $this->slug = $this->context->getDataValue('category_slug');
+        $this->slug = $this->getDataValue('category_slug');
 
         if ($this->slug) {
             return (array) DB::table('categories')

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApiShopController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,4 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 */
 
-Route::post('/exchanger', '\App\Http\Controllers\ApiController@actionExchanger');
+//Route::post('/exchanger', '\App\Http\Controllers\ApiController@actionExchanger');
+
+
+Route::resource('exchanger', ApiShopController::class);

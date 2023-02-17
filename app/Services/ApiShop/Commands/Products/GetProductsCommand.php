@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services\Api\Commands\Products;
+namespace App\Services\ApiShop\Commands\Products;
 
-use App\Services\Api\Commands\Base\BaseCommand;
+use App\Services\ApiShop\Commands\Base\BaseCommand;
 use Illuminate\Http\JsonResponse;
 use DB;
 use Illuminate\Database\Query\Builder;
@@ -28,7 +28,7 @@ class GetProductsCommand extends BaseCommand
     public function process(): mixed
     {
         $this->buildProduct();
-        $this->slug = $this->context->getDataValue('category_slug');
+        $this->slug = $this->getDataValue('category_slug');
 
         if ((bool) $this->slug) {
             $this->productBySlug();
